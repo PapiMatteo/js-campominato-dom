@@ -53,7 +53,7 @@ function handleBtnClick() {
         default:
             gridSize = 100;
             cellSize = 10;
-            break
+            
     }
 
     bombList = bombGenerator(gridSize);
@@ -75,13 +75,34 @@ function handleBtnClick() {
 }
 
 function handleCellClick() {
-    
+    const allBomb = document.querySelectorAll(".cell");
     const clickedNumber = parseInt(this.textContent);
     console.log(clickedNumber);
 
     if (bombList.includes(clickedNumber)) {
 
-        this.classList.add("red");
+        this.classList.add("bomb");  
+        
+        for (let i = 0 ; i< allBomb.length; i++) {
+            const bombElem = allBomb[i];
+
+            for (j = 0; j < bombList.length; j++){
+                const singleBomb = bombList[j];
+                allBomb[singleBomb].classList.add("bomb");
+            }
+
+            bombElem.removeEventListener("click", handleCellClick);
+            
+        }
+        // allBomb.forEach(function (bomb) {
+
+        //     bombList.forEach(function (singleBomb) {
+        //         allBomb[singleBomb].classList.add('bomb');
+        //     });
+
+        //     bomb.removeEventListener("click", handleCellClick);
+        // });
+        
         console.log("Hai Perso!");
 
     } else {
