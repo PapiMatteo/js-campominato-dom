@@ -66,6 +66,10 @@ header {
     background-color: aqua;
 }
 
+.red {
+    background-color: red;
+}
+
 .show {
     display: flex;
 }
