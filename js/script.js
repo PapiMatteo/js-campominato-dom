@@ -1,18 +1,17 @@
 // DATI
 
-const btnElem  = document.querySelector(".start");
-const gridElem = document.querySelector(".grid");
+const btnElem   = document.querySelector(".start");
+const gridElem  = document.querySelector(".grid");
 
-
-let bombList      = [];
-let maxClicks;
+let clickedList = [];
+let bombList    = [];
+let maxClick;
 
 
 
 // LOGICA
 
 btnElem.addEventListener("click", handleBtnClick);
-
 
 /***********************/
 // FUNZIONI
@@ -60,8 +59,8 @@ function handleBtnClick() {
     bombList = bombGenerator(gridSize);
     console.log(bombList);
 
-    maxClicks = gridSize - bombList.length;
-    console.log(maxClicks);
+    maxClick = gridSize - bombList.length;
+    console.log(maxClick);
 
     for (let i = 1; i <= gridSize; i++) {
 
@@ -76,25 +75,27 @@ function handleBtnClick() {
 }
 
 function handleCellClick() {
-
+    
     const clickedNumber = parseInt(this.textContent);
     console.log(clickedNumber);
-    const clickedList = [];
 
-    if (clickedList.length === maxClicks) {
-        console.log("Hai Vinto")
-    } else if (bombList.includes(clickedNumber)) {
+    if (bombList.includes(clickedNumber)) {
+
         this.classList.add("red");
-        console.log("Hai Perso");
+        console.log("Hai Perso!");
 
     } else {
         this.classList.add("azure");
-
-        if (!clickedList.includes(clickedNumber) && !bombList.includes(clickedNumber)){
-            clickedList.push(clickedNumber)
-        }
     }
     
+    if (!clickedList.includes(clickedNumber) && !bombList.includes(clickedNumber)){
+        clickedList.push(clickedNumber);
+    }
+    console.log(clickedList)
+
+    if (clickedList.length === maxClick){
+        console.log("Hai Vinto!");
+    }
 }
 
 function generateRndNum(min, max) {
