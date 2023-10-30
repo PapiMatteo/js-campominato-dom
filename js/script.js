@@ -4,6 +4,7 @@ const btnElem  = document.querySelector(".start");
 const gridElem = document.querySelector(".grid");
 
 
+
 // LOGICA
 
 btnElem.addEventListener("click", handleBtnClick);
@@ -51,6 +52,9 @@ function handleBtnClick() {
             break
     }
 
+    const bombs = bombGenerator(100);
+    console.log(bombs)
+
     for (let i = 1; i <= gridSize; i++) {
 
         const cell = createCells(i, cellSize);
@@ -70,3 +74,22 @@ function handleCellClick(){
     this.classList.add("azure");
 
 }
+
+function generateRndNum (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function bombGenerator (max) {
+    const result = [];
+
+    while (result.lenght < 16) {
+        const newNum = generateRndNum(1, max)
+        console.log(newNum)
+
+        if (!result.includes(newNum)){
+            result.push(newNum);
+        }
+    }
+    return result;
+}
+
