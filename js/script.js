@@ -59,6 +59,8 @@ function handleBtnClick() {
     bombList = bombGenerator(gridSize);
     console.log(bombList);
 
+    clickedList = [];
+
     maxClick = gridSize - bombList.length;
     console.log(maxClick);
 
@@ -75,7 +77,7 @@ function handleBtnClick() {
 }
 
 function handleCellClick() {
-    const allBomb = document.querySelectorAll(".cell");
+    const allBomb       = document.querySelectorAll(".cell");
     const clickedNumber = parseInt(this.textContent);
     console.log(clickedNumber);
 
@@ -83,7 +85,7 @@ function handleCellClick() {
 
         this.classList.add("bomb");  
         
-        for (let i = 0 ; i< allBomb.length; i++) {
+        for (let i = 0 ; i < allBomb.length; i++) {
             const bombElem = allBomb[i];
 
             for (j = 0; j < bombList.length; j++){
@@ -94,16 +96,8 @@ function handleCellClick() {
             bombElem.removeEventListener("click", handleCellClick);
             
         }
-        // allBomb.forEach(function (bomb) {
-
-        //     bombList.forEach(function (singleBomb) {
-        //         allBomb[singleBomb].classList.add('bomb');
-        //     });
-
-        //     bomb.removeEventListener("click", handleCellClick);
-        // });
         
-        console.log("Hai Perso!");
+        console.log(`Hai perso dopo ${clickedList.length} mosse`);
 
     } else {
         this.classList.add("azure");
